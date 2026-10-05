@@ -1,0 +1,23 @@
+{
+  "phase": "before_application_modules",
+  "cases": 28,
+  "complete_reports": 20,
+  "errors": 8,
+  "files": [
+    {
+      "path": "SCHEMA.md",
+      "bytes": 2554,
+      "sha256": "3ec3a6b60aabc0cccf6be3a397775aee60440734d06b93f905346629a0da898a"
+    },
+    {
+      "path": "tests/cases.json",
+      "bytes": 37420,
+      "sha256": "f7cb7e1954c52dfb1e609cf69dd6fa54749d202cbbb49dd57a8b92e476463be5"
+    },
+    {
+      "path": "tests/support.py",
+      "bytes": 637,
+      "sha256": "4c176580e791976957f7540e60859e87f5aaeb996f46d1d995e9c8984401c84b"
+    }
+  ]
+}

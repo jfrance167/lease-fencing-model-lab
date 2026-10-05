@@ -1,0 +1,1 @@
+{"profile":"fence-high-water/1","model_basis":"assumed_monotonic_retained_atomic","initial_high_water":0,"requests":[{"request_id":"newer","holder":"B","token":34},{"request_id":"delayed","holder":"A","token":33},{"request_id":"repeat","holder":"B","token":34}]}

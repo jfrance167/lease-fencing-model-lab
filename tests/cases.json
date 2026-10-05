@@ -1,0 +1,1416 @@
+[
+  {
+    "name": "first",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 0,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1,
+          "high_water_before": 0,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 1
+        }
+      ],
+      "summary": {
+        "request_count": 1,
+        "modeled_requests": 1,
+        "unknown_requests": 0,
+        "accepted": 1,
+        "rejected": 0,
+        "equal": 0,
+        "advanced": 1
+      },
+      "final_high_water": 1
+    }
+  },
+  {
+    "name": "equal",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 2,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 2
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 2,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 2,
+          "high_water_before": 2,
+          "decision": "accept_model",
+          "reason": "equal_token",
+          "high_water_after": 2
+        }
+      ],
+      "summary": {
+        "request_count": 1,
+        "modeled_requests": 1,
+        "unknown_requests": 0,
+        "accepted": 1,
+        "rejected": 0,
+        "equal": 1,
+        "advanced": 0
+      },
+      "final_high_water": 2
+    }
+  },
+  {
+    "name": "stale",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 2,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 2,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1,
+          "high_water_before": 2,
+          "decision": "reject_model",
+          "reason": "stale_token",
+          "high_water_after": 2
+        }
+      ],
+      "summary": {
+        "request_count": 1,
+        "modeled_requests": 1,
+        "unknown_requests": 0,
+        "accepted": 0,
+        "rejected": 1,
+        "equal": 0,
+        "advanced": 0
+      },
+      "final_high_water": 2
+    }
+  },
+  {
+    "name": "high_then_old",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 4
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 2
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 0,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 4,
+          "high_water_before": 0,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 4
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 2,
+          "high_water_before": 4,
+          "decision": "reject_model",
+          "reason": "stale_token",
+          "high_water_after": 4
+        }
+      ],
+      "summary": {
+        "request_count": 2,
+        "modeled_requests": 2,
+        "unknown_requests": 0,
+        "accepted": 1,
+        "rejected": 1,
+        "equal": 0,
+        "advanced": 1
+      },
+      "final_high_water": 4
+    }
+  },
+  {
+    "name": "old_then_high",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 2
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 4
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 0,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 2,
+          "high_water_before": 0,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 2
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 4,
+          "high_water_before": 2,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 4
+        }
+      ],
+      "summary": {
+        "request_count": 2,
+        "modeled_requests": 2,
+        "unknown_requests": 0,
+        "accepted": 2,
+        "rejected": 0,
+        "equal": 0,
+        "advanced": 2
+      },
+      "final_high_water": 4
+    }
+  },
+  {
+    "name": "gaps",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 1,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 100
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 99
+        },
+        {
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 1000
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 1,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 100,
+          "high_water_before": 1,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 100
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 99,
+          "high_water_before": 100,
+          "decision": "reject_model",
+          "reason": "stale_token",
+          "high_water_after": 100
+        },
+        {
+          "index": 2,
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 1000,
+          "high_water_before": 100,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 1000
+        }
+      ],
+      "summary": {
+        "request_count": 3,
+        "modeled_requests": 3,
+        "unknown_requests": 0,
+        "accepted": 2,
+        "rejected": 1,
+        "equal": 0,
+        "advanced": 2
+      },
+      "final_high_water": 1000
+    }
+  },
+  {
+    "name": "equal_repeats",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 7
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 7
+        },
+        {
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 7
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 0,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 7,
+          "high_water_before": 0,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 7
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 7,
+          "high_water_before": 7,
+          "decision": "accept_model",
+          "reason": "equal_token",
+          "high_water_after": 7
+        },
+        {
+          "index": 2,
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 7,
+          "high_water_before": 7,
+          "decision": "accept_model",
+          "reason": "equal_token",
+          "high_water_after": 7
+        }
+      ],
+      "summary": {
+        "request_count": 3,
+        "modeled_requests": 3,
+        "unknown_requests": 0,
+        "accepted": 3,
+        "rejected": 0,
+        "equal": 2,
+        "advanced": 1
+      },
+      "final_high_water": 7
+    }
+  },
+  {
+    "name": "changed_holder_equal",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 7,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 7
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 7
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 7,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 7,
+          "high_water_before": 7,
+          "decision": "accept_model",
+          "reason": "equal_token",
+          "high_water_after": 7
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 7,
+          "high_water_before": 7,
+          "decision": "accept_model",
+          "reason": "equal_token",
+          "high_water_after": 7
+        }
+      ],
+      "summary": {
+        "request_count": 2,
+        "modeled_requests": 2,
+        "unknown_requests": 0,
+        "accepted": 2,
+        "rejected": 0,
+        "equal": 2,
+        "advanced": 0
+      },
+      "final_high_water": 7
+    }
+  },
+  {
+    "name": "forged_higher_numeric",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 4,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 999999999
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 5
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 4,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 999999999,
+          "high_water_before": 4,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 999999999
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 5,
+          "high_water_before": 999999999,
+          "decision": "reject_model",
+          "reason": "stale_token",
+          "high_water_after": 999999999
+        }
+      ],
+      "summary": {
+        "request_count": 2,
+        "modeled_requests": 2,
+        "unknown_requests": 0,
+        "accepted": 1,
+        "rejected": 1,
+        "equal": 0,
+        "advanced": 1
+      },
+      "final_high_water": 999999999
+    }
+  },
+  {
+    "name": "max_token",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1000000000
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 0,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1000000000,
+          "high_water_before": 0,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 1000000000
+        }
+      ],
+      "summary": {
+        "request_count": 1,
+        "modeled_requests": 1,
+        "unknown_requests": 0,
+        "accepted": 1,
+        "rejected": 0,
+        "equal": 0,
+        "advanced": 1
+      },
+      "final_high_water": 1000000000
+    }
+  },
+  {
+    "name": "empty_modeled",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 3,
+      "requests": []
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 3,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [],
+      "summary": {
+        "request_count": 0,
+        "modeled_requests": 0,
+        "unknown_requests": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "equal": 0,
+        "advanced": 0
+      },
+      "final_high_water": 3
+    }
+  },
+  {
+    "name": "no_reset",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 10,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 2
+        },
+        {
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 10
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 10,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1,
+          "high_water_before": 10,
+          "decision": "reject_model",
+          "reason": "stale_token",
+          "high_water_after": 10
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 2,
+          "high_water_before": 10,
+          "decision": "reject_model",
+          "reason": "stale_token",
+          "high_water_after": 10
+        },
+        {
+          "index": 2,
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 10,
+          "high_water_before": 10,
+          "decision": "accept_model",
+          "reason": "equal_token",
+          "high_water_after": 10
+        }
+      ],
+      "summary": {
+        "request_count": 3,
+        "modeled_requests": 3,
+        "unknown_requests": 0,
+        "accepted": 1,
+        "rejected": 2,
+        "equal": 1,
+        "advanced": 0
+      },
+      "final_high_water": 10
+    }
+  },
+  {
+    "name": "max_seed",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 1000000000,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 999999999
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 1000000000
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 1000000000,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 999999999,
+          "high_water_before": 1000000000,
+          "decision": "reject_model",
+          "reason": "stale_token",
+          "high_water_after": 1000000000
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 1000000000,
+          "high_water_before": 1000000000,
+          "decision": "accept_model",
+          "reason": "equal_token",
+          "high_water_after": 1000000000
+        }
+      ],
+      "summary": {
+        "request_count": 2,
+        "modeled_requests": 2,
+        "unknown_requests": 0,
+        "accepted": 1,
+        "rejected": 1,
+        "equal": 1,
+        "advanced": 0
+      },
+      "final_high_water": 1000000000
+    }
+  },
+  {
+    "name": "delayed_after_equal",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 3
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 3
+        },
+        {
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 2
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 0,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 3,
+          "high_water_before": 0,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 3
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 3,
+          "high_water_before": 3,
+          "decision": "accept_model",
+          "reason": "equal_token",
+          "high_water_after": 3
+        },
+        {
+          "index": 2,
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 2,
+          "high_water_before": 3,
+          "decision": "reject_model",
+          "reason": "stale_token",
+          "high_water_after": 3
+        }
+      ],
+      "summary": {
+        "request_count": 3,
+        "modeled_requests": 3,
+        "unknown_requests": 0,
+        "accepted": 2,
+        "rejected": 1,
+        "equal": 1,
+        "advanced": 1
+      },
+      "final_high_water": 3
+    }
+  },
+  {
+    "name": "retained_seed",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 5,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 9
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 5
+        },
+        {
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 9
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "state": "modeled",
+      "initial_high_water": 5,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 9,
+          "high_water_before": 5,
+          "decision": "accept_model",
+          "reason": "advance_high_water",
+          "high_water_after": 9
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 5,
+          "high_water_before": 9,
+          "decision": "reject_model",
+          "reason": "stale_token",
+          "high_water_after": 9
+        },
+        {
+          "index": 2,
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 9,
+          "high_water_before": 9,
+          "decision": "accept_model",
+          "reason": "equal_token",
+          "high_water_after": 9
+        }
+      ],
+      "summary": {
+        "request_count": 3,
+        "modeled_requests": 3,
+        "unknown_requests": 0,
+        "accepted": 2,
+        "rejected": 1,
+        "equal": 1,
+        "advanced": 1
+      },
+      "final_high_water": 9
+    }
+  },
+  {
+    "name": "unknown_empty",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "initial_high_water": 0,
+      "requests": []
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "state": "incomplete",
+      "initial_high_water": 0,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [],
+      "summary": {
+        "request_count": 0,
+        "modeled_requests": 0,
+        "unknown_requests": 0,
+        "accepted": null,
+        "rejected": null,
+        "equal": null,
+        "advanced": null
+      },
+      "final_high_water": null
+    }
+  },
+  {
+    "name": "unknown_empty_max",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "initial_high_water": 1000000000,
+      "requests": []
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "state": "incomplete",
+      "initial_high_water": 1000000000,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [],
+      "summary": {
+        "request_count": 0,
+        "modeled_requests": 0,
+        "unknown_requests": 0,
+        "accepted": null,
+        "rejected": null,
+        "equal": null,
+        "advanced": null
+      },
+      "final_high_water": null
+    }
+  },
+  {
+    "name": "unknown_trace",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "initial_high_water": 5,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": 9
+        },
+        {
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 9
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "state": "incomplete",
+      "initial_high_water": 5,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1,
+          "high_water_before": null,
+          "decision": null,
+          "reason": "model_basis_unknown",
+          "high_water_after": null
+        },
+        {
+          "index": 1,
+          "request_id": "r1",
+          "holder": "other",
+          "token": 9,
+          "high_water_before": null,
+          "decision": null,
+          "reason": "model_basis_unknown",
+          "high_water_after": null
+        },
+        {
+          "index": 2,
+          "request_id": "r2",
+          "holder": "holder",
+          "token": 9,
+          "high_water_before": null,
+          "decision": null,
+          "reason": "model_basis_unknown",
+          "high_water_after": null
+        }
+      ],
+      "summary": {
+        "request_count": 3,
+        "modeled_requests": 0,
+        "unknown_requests": 3,
+        "accepted": null,
+        "rejected": null,
+        "equal": null,
+        "advanced": null
+      },
+      "final_high_water": null
+    }
+  },
+  {
+    "name": "unknown_first",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "state": "incomplete",
+      "initial_high_water": 0,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1,
+          "high_water_before": null,
+          "decision": null,
+          "reason": "model_basis_unknown",
+          "high_water_after": null
+        }
+      ],
+      "summary": {
+        "request_count": 1,
+        "modeled_requests": 0,
+        "unknown_requests": 1,
+        "accepted": null,
+        "rejected": null,
+        "equal": null,
+        "advanced": null
+      },
+      "final_high_water": null
+    }
+  },
+  {
+    "name": "unknown_max",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "initial_high_water": 7,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1000000000
+        }
+      ]
+    },
+    "expected": {
+      "schema_version": 1,
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "state": "incomplete",
+      "initial_high_water": 7,
+      "assurances": {
+        "token_issuance": "unverified",
+        "holder_binding": "unverified",
+        "authorization": "unverified",
+        "lease_validity": "unverified",
+        "state_retention": "unverified",
+        "atomic_resource_enforcement": "unverified",
+        "mutual_exclusion": "unverified",
+        "effects": "unmodeled"
+      },
+      "rows": [
+        {
+          "index": 0,
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1000000000,
+          "high_water_before": null,
+          "decision": null,
+          "reason": "model_basis_unknown",
+          "high_water_after": null
+        }
+      ],
+      "summary": {
+        "request_count": 1,
+        "modeled_requests": 0,
+        "unknown_requests": 1,
+        "accepted": null,
+        "rejected": null,
+        "equal": null,
+        "advanced": null
+      },
+      "final_high_water": null
+    }
+  },
+  {
+    "name": "late_invalid_unknown",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "unknown",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1
+        },
+        {
+          "request_id": "r1",
+          "holder": "other",
+          "token": true
+        }
+      ]
+    },
+    "expected_error": {
+      "error": "invalid_input"
+    }
+  },
+  {
+    "name": "duplicate_rejected_ids",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 9,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 1
+        },
+        {
+          "request_id": "r0",
+          "holder": "other",
+          "token": 2
+        }
+      ]
+    },
+    "expected_error": {
+      "error": "invalid_input"
+    }
+  },
+  {
+    "name": "missing_basis",
+    "input": {
+      "profile": "fence-high-water/1",
+      "initial_high_water": 0,
+      "requests": []
+    },
+    "expected_error": {
+      "error": "invalid_input"
+    }
+  },
+  {
+    "name": "unsupported_profile",
+    "input": {
+      "profile": "other",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": []
+    },
+    "expected_error": {
+      "error": "unsupported_profile"
+    }
+  },
+  {
+    "name": "extra_field",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": [],
+      "extra": 0
+    },
+    "expected_error": {
+      "error": "invalid_input"
+    }
+  },
+  {
+    "name": "zero_token",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "holder",
+          "token": 0
+        }
+      ]
+    },
+    "expected_error": {
+      "error": "invalid_input"
+    }
+  },
+  {
+    "name": "seed_over_domain",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 1000000001,
+      "requests": []
+    },
+    "expected_error": {
+      "error": "invalid_input"
+    }
+  },
+  {
+    "name": "control_holder",
+    "input": {
+      "profile": "fence-high-water/1",
+      "model_basis": "assumed_monotonic_retained_atomic",
+      "initial_high_water": 0,
+      "requests": [
+        {
+          "request_id": "r0",
+          "holder": "bad\nlabel",
+          "token": 1
+        }
+      ]
+    },
+    "expected_error": {
+      "error": "invalid_input"
+    }
+  }
+]
