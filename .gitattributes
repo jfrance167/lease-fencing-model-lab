@@ -1,0 +1,27 @@
+
+# Preserve reviewed snapshot bytes across checkout platforms.
+/.github/workflows/codeql.yml -text
+/.gitignore -text
+/DECISIONS.md -text
+/LEARNING.md -text
+/LICENSE -text
+/PLAN.md -text
+/README.md -text
+/RESEARCH.md -text
+/REVIEW.md -text
+/SCHEMA.md -text
+/SECURITY.md -text
+/STATE.md -text
+/VERIFICATION.md -text
+/examples/delayed.json -text
+/examples/unknown.json -text
+/fencing_lab/__init__.py -text
+/fencing_lab/__main__.py -text
+/fencing_lab/admission.py -text
+/fencing_lab/core.py -text
+/requirements-security.txt -text
+/scripts/report_bound.py -text
+/scripts/verify.py -text
+/tests/__init__.py -text
+/tests/support.py -text
+/tests/test_lab.py -text
